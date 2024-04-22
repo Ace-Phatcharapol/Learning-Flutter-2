@@ -26,7 +26,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     print("เรียกใช้งาน init State");
   }
