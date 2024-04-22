@@ -1,0 +1,10 @@
+C:/FlutterProject/learningflutter/build/windows/x64/runner/Debug/data/icudtl.dat
+C:/FlutterProject/learningflutter/build/windows/x64/runner/Debug/flutter_windows.dll
+C:/FlutterProject/learningflutter/build/windows/x64/runner/Debug/data/flutter_assets/AssetManifest.bin
+C:/FlutterProject/learningflutter/build/windows/x64/runner/Debug/data/flutter_assets/AssetManifest.json
+C:/FlutterProject/learningflutter/build/windows/x64/runner/Debug/data/flutter_assets/FontManifest.json
+C:/FlutterProject/learningflutter/build/windows/x64/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+C:/FlutterProject/learningflutter/build/windows/x64/runner/Debug/data/flutter_assets/kernel_blob.bin
+C:/FlutterProject/learningflutter/build/windows/x64/runner/Debug/data/flutter_assets/NOTICES.Z
+C:/FlutterProject/learningflutter/build/windows/x64/runner/Debug/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+C:/FlutterProject/learningflutter/build/windows/x64/runner/Debug/data/flutter_assets/shaders/ink_sparkle.frag
