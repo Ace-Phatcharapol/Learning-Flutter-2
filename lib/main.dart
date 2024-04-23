@@ -1,16 +1,39 @@
-//Login
-void main() async{
-  print(await loginUser());
-  print("ทำงานอื่นต่อไป");
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
 }
 
-//ดึงข้อมูล
-Future <String> loginUser() async{
-  var user = await getUserFromDatabase();
-  return "ขื่อผู้ใช้ที่ค้นหา คือ " + user;
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Exchange rates api project",
+      home: MyHomePage(),
+      theme: ThemeData(primarySwatch: Colors.purple),
+    );
+  }
 }
 
-//ได้ข้อมูลในอนาคตต้องรอตามวินาทีที่กำหนดไว้
-Future <String> getUserFromDatabase() {
-  return Future.delayed(Duration(seconds: 10),()=>"Ace");
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  //การแสดงผล
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            "Exchange rates",
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+          ),
+        ),
+        body: Column(children: [
+          
+        ],)
+        );
+  }
 }
