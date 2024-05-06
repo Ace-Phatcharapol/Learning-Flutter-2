@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'ExchangeRate.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,17 +23,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  ExchangeRate? _dataFromAPI; // ใช้ ? เพื่อแสดงว่า _dataFromAPI สามารถเป็น null ได้
+  
   @override
   void initState() {
     super.initState();
     getExchangeRate();
   }
 
-
-  Future <void> getExchangeRate() async{
-      var url = "https://v6.exchangerate-api.com/v6/891febb7ba4fa97c0bb088a0/pair/THB/USD";
-      var response = await http.get(Uri.parse(url));
-    print(response.body);
+  Future<void> getExchangeRate() async {
+    var url =
+        "https://v6.exchangerate-api.com/v6/891febb7ba4fa97c0bb088a0/pair/THB/USD";
+    var response = await http.get(Uri.parse(url));
+    setState(() {
+      _dataFromAPI = exchangeRateFromJson(response.body);// json => dart object
+    });
   }
 
   //การแสดงผล
@@ -46,7 +52,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         body: Column(
-          children: [],
+          children: [
+            LinearProgressIndicator(),
+            Text(_dataFromAPI?.baseCode ?? "Loading...")
+          ],
         ));
   }
 }
