@@ -12,7 +12,7 @@ Download Link: https://developer.android.com/studio
 <p style="color: yellow !important;">And use "flutter doctor" in Command Prompt to check the status. It should display all green checkmarks.</p>
 
 <h3>API</h3>
-Link: https://www.exchangerate-api.com/
+Link: https://www.exchangerate-api.com/<br>
 
 <strong style="font-size: 20px !important;">Example screen</strong><br>
 
