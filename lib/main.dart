@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'ExchangeRate.dart';
+import 'MoneyBox.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<ExchangeRate?> getExchangeRate() async {
     var url =
-        "https://v6.exchangerate-api.com/v6/891febb7ba4fa97c0bb088a0/pair/THB/USD";
+        "https://v6.exchangerate-api.com/v6/891febb7ba4fa97c0bb088a0/latest/USD";
     var response = await http.get(Uri.parse(url));
     _dataFromAPI = exchangeRateFromJson(response.body); // json => dart object
     return _dataFromAPI;
@@ -56,18 +57,18 @@ class _MyHomePageState extends State<MyHomePage> {
             //ดึงข้อมูลจาก getExchangeRate มาครบเรียบร้อยจะให้ทำอะไรต่อ
             if (snapshot.connectionState == ConnectionState.done) {
               var result = snapshot.data;
-              return ListView(
-                children: [
-                  ListTile(
-                    title: Text(result.baseCode),
-                  ),
-                  ListTile(
-                    title: Text("${result.targetCode}"),
-                  ),
-                                    ListTile(
-                    title: Text("${result.conversionRate.toString()}"),
-                  ),
-                ],
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    MoneyBox("สกุลเงิน (USD)", 1, Colors.blueAccent, 100),
+                    SizedBox(height: 5,),
+                    MoneyBox("แปลง USD เป็น THB", result.conversionRates!["THB"], Colors.greenAccent, 100),
+                    SizedBox(height: 5,),
+                    MoneyBox("แปลง USD เป็น EUR", result.conversionRates!["EUR"], Colors.redAccent, 100),
+                    SizedBox(height: 5,),
+                  ],
+                ),
               );
             }
             return LinearProgressIndicator();

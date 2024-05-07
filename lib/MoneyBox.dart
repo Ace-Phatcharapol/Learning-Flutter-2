@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 
 //สร้าง container ต้นแบบ
 class MoneyBox extends StatelessWidget {
-  String title; //ชื่อหมวดหมู่
+  String title; //ชื่อสกุลเงิน
   double amount; //จำนวนเงิน
   Color color; //สีของกล่อง
   double size; //ขนาดของกล่อง
@@ -13,7 +13,7 @@ class MoneyBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(20.0),
       decoration:
           BoxDecoration(color: color, borderRadius: BorderRadius.circular(10)),
       height: size,

@@ -17,8 +17,7 @@ class ExchangeRate {
     int? timeNextUpdateUnix;
     String? timeNextUpdateUtc;
     String? baseCode;
-    String? targetCode;
-    double? conversionRate;
+    Map<String, double>? conversionRates;
 
     ExchangeRate({
         this.result,
@@ -29,8 +28,7 @@ class ExchangeRate {
         this.timeNextUpdateUnix,
         this.timeNextUpdateUtc,
         this.baseCode,
-        this.targetCode,
-        this.conversionRate,
+        this.conversionRates,
     });
 
     factory ExchangeRate.fromJson(Map<String, dynamic> json) => ExchangeRate(
@@ -42,8 +40,7 @@ class ExchangeRate {
         timeNextUpdateUnix: json["time_next_update_unix"],
         timeNextUpdateUtc: json["time_next_update_utc"],
         baseCode: json["base_code"],
-        targetCode: json["target_code"],
-        conversionRate: json["conversion_rate"]?.toDouble(),
+        conversionRates: Map.from(json["conversion_rates"]!).map((k, v) => MapEntry<String, double>(k, v?.toDouble())),
     );
 
     Map<String, dynamic> toJson() => {
@@ -55,7 +52,6 @@ class ExchangeRate {
         "time_next_update_unix": timeNextUpdateUnix,
         "time_next_update_utc": timeNextUpdateUtc,
         "base_code": baseCode,
-        "target_code": targetCode,
-        "conversion_rate": conversionRate,
+        "conversion_rates": Map.from(conversionRates!).map((k, v) => MapEntry<String, dynamic>(k, v)),
     };
 }
