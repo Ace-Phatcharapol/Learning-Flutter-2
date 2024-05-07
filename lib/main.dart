@@ -23,22 +23,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  ExchangeRate?
+      _dataFromAPI; // ใช้ ? เพื่อแสดงว่า _dataFromAPI สามารถเป็น null ได้
 
-  ExchangeRate? _dataFromAPI; // ใช้ ? เพื่อแสดงว่า _dataFromAPI สามารถเป็น null ได้
-  
   @override
   void initState() {
     super.initState();
     getExchangeRate();
   }
 
-  Future<void> getExchangeRate() async {
+  Future<ExchangeRate?> getExchangeRate() async {
     var url =
         "https://v6.exchangerate-api.com/v6/891febb7ba4fa97c0bb088a0/pair/THB/USD";
     var response = await http.get(Uri.parse(url));
-    setState(() {
-      _dataFromAPI = exchangeRateFromJson(response.body);// json => dart object
-    });
+    _dataFromAPI = exchangeRateFromJson(response.body); // json => dart object
+    return _dataFromAPI;
   }
 
   //การแสดงผล
@@ -51,11 +50,28 @@ class _MyHomePageState extends State<MyHomePage> {
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
           ),
         ),
-        body: Column(
-          children: [
-            LinearProgressIndicator(),
-            Text(_dataFromAPI?.baseCode ?? "Loading...")
-          ],
+        body: FutureBuilder(
+          future: getExchangeRate(),
+          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+            //ดึงข้อมูลจาก getExchangeRate มาครบเรียบร้อยจะให้ทำอะไรต่อ
+            if (snapshot.connectionState == ConnectionState.done) {
+              var result = snapshot.data;
+              return ListView(
+                children: [
+                  ListTile(
+                    title: Text(result.baseCode),
+                  ),
+                  ListTile(
+                    title: Text("${result.targetCode}"),
+                  ),
+                                    ListTile(
+                    title: Text("${result.conversionRate.toString()}"),
+                  ),
+                ],
+              );
+            }
+            return LinearProgressIndicator();
+          },
         ));
   }
 }
