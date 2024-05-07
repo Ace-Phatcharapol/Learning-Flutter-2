@@ -23,13 +23,13 @@ class MoneyBox extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-                fontSize: 24, color: Colors.white, fontWeight: FontWeight.w700),
+                fontSize: 18, color: Colors.white, fontWeight: FontWeight.w700),
           ),
           Expanded(
             child: Text(
               '${NumberFormat("#,###.##").format(amount)}',
               style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 16,
                   color: Colors.white,
                   fontWeight: FontWeight.w700),
               textAlign: TextAlign.right,
